@@ -18,7 +18,7 @@ babel({
 })
 ```
 
-## 安装
+## Install
 
 ```ssh
 ## npm
@@ -28,7 +28,7 @@ npm install --save @lljj/vue3-form-core
 yarn add @lljj/vue3-form-core
 ```
 
-## Install
+
 According to the following format, configure the mapping relationship of the corresponding component in the current component library. You can directly configure the global component name or component constructor. `The default component props are in the elementUi format. If the props format is different, an intermediate component is required for conversion`;
 ```js
 import createVue2Core from '@lljj/vue3-form-core';
