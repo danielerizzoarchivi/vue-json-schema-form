@@ -1,19 +1,19 @@
 # @lljj/vue3-form-core
-vue3 版本核心，可以基于此适配不同的 vue3 ui库。
+The vue3 version core can adapt to different vue3 ui libraries based on this.
 
-适配的核心就是对应类型为自己的组件库，且处理默认 `props` 与自己组件库 props 之间的转换
+The core of adaptation is that the corresponding type is your own component library, and handles the conversion between the default `props` and the props of your own component library
 
-> 适配方案可参见 [@lljj/vue3-form-element](https://github.com/lljj-x/vue-json-schema-form/tree/master/packages/lib/vue3/vue3-form-element) 、[@lljj/vue3-form-ant](https://github.com/lljj-x/vue-json-schema-form/tree/master/packages/lib/vue3/vue3-form-ant)
+> For the adaptation plan, please see [@lljj/vue3-form-element](https://github.com/lljj-x/vue-json-schema-form/tree/master/packages/lib/vue3/vue3-form -element), [@lljj/vue3-form-ant](https://github.com/lljj-x/vue-json-schema-form/tree/master/packages/lib/vue3/vue3-form-ant )
 
 
-## 兼容性
-npm 包直接为 es6+ 源码，需要在构建 lib 时通过babe转义
+## compatibility
+The npm package is directly es6+ source code and needs to be escaped through babe when building the lib.
 
-如配置 rollup babel plugin：
+For example, configure rollup babel plugin:
 
 ```js
 babel({
-    exclude: /node_modules\/(?!(@lljj)\/).*/, // 忽略跳过 @lljj
+    exclude: /node_modules\/(?!(@lljj)\/).*/, //Ignore skip @lljj
     extensions: ['.js', '.vue'],
 })
 ```
@@ -28,97 +28,94 @@ npm install --save @lljj/vue3-form-core
 yarn add @lljj/vue3-form-core
 ```
 
-## 使用方法
-
-按如下格式，配置对应组件在当前组件库中的映射关系，可以直接配置全局组件名或者组件构造函数，`默认组件 props 为elementUi格式，如果props格式不同需要中间组件来做转换`；
-
+## Install
+According to the following format, configure the mapping relationship of the corresponding component in the current component library. You can directly configure the global component name or component constructor. `The default component props are in the elementUi format. If the props format is different, an intermediate component is required for conversion`;
 ```js
 import createVue2Core from '@lljj/vue3-form-core';
 
 const globalOptions = {
-    // widget组件和现有组件库映射关系
-    WIDGET_MAP: {
-        // 默认按schema type 映射默认widget组件
-        types: {
-            // type  boolean
-            boolean: 'el-switch',
+        // Mapping relationship between widget component and existing component library    WIDGET_MAP: {
+        //Map default widget components by schema type by default
+      types: {
+             // type boolean
+             boolean: 'el-switch',
 
-            // type  string
-            string: 'el-input',
+             // type string
+             string: 'el-input',
 
-            // type number
-            number: 'el-input-number',
+             // type number
+             number: 'el-input-number',
 
-            // type integer
-            integer: 'el-input-number',
-        },
+             // type integer
+             integer: 'el-input-number',
+         },
 
-        // 按 schema format 映射默认widget组件，优先级高于 types
-        formats: {
-            // format: color
-            color: 'el-color-picker',
+         //Map default widget components according to schema format, with priority higher than types
+         formats: {
+             // format: color
+             color: 'el-color-picker',
 
-            // format: time
-            time: TimePickerWidget, // 格式 20:20:39+00:00
+             // format: time
+             time: TimePickerWidget, // format 20:20:39+00:00
 
-            // format: date
-            date: DatePickerWidget, // 格式 2018-11-13
+             // format: date
+             date: DatePickerWidget, // format 2018-11-13
 
-            // format: date-time
-            'date-time': DateTimePickerWidget, // 格式 2018-11-13T20:20:39+00:00
-        },
+             // format: date-time
+             'date-time': DateTimePickerWidget, // Format 2018-11-13T20:20:39+00:00
+         },
 
-        // 一些公共常用类型
-        common: {
-            // select option
-            select: SelectWidget,
+         // Some common common types
+         common: {
+             //select option
+             select: SelectWidget,
 
-            // radio
-            radioGroup: RadioWidget,
+             //radio
+             radioGroup: RadioWidget,
 
-            // checkout
-            checkboxGroup: CheckboxesWidget,
-        },
+             // checkout
+             checkboxGroup: CheckboxesWidget,
+         },
 
-        // 这里配置一些 为当前ui库适配过的组件，会在运行时自动注册为全局组件，不注册为全局也可不配置
-        // Vue3 只有在组件内才能获取到当前的app，所以注册时机是在 form组件setup中，且只会注册一次。
-        widgetComponents: {
-            CheckboxesWidget,
-            RadioWidget,
-            SelectWidget,
-            TimePickerWidget,
-            DatePickerWidget,
-            DateTimePickerWidget
-        }
-    },
+         // Configure some components here that have been adapted for the current UI library. They will be automatically registered as global components at runtime. You do not need to register them as global components or configure them.
+         // Vue3 can only obtain the current app within the component, so the registration time is in the form component setup, and it will only be registered once.
+         widgetComponents: {
+             CheckboxesWidget,
+             RadioWidget,
+             SelectWidget,
+             TimePickerWidget,
+             DatePickerWidget,
+             DateTimePickerWidget
+         }
+     },
 
-    // 其它表单相关组件映射关系
-    COMPONENT_MAP: {
-        // form组件
-        form: 'el-form',
+     // Mapping relationships of other form-related components
+     COMPONENT_MAP: {
+         // form component
+         form: 'el-form',
 
-        // formItem 组件
-        formItem: 'el-form-item',
+         // formItem component
+         formItem: 'el-form-item',
 
-        // button 组件
-        button: 'el-button',
+         // button component
+         button: 'el-button',
 
-        // popover，用在formLable 左右布局时鼠标移入显示description
-        popover: 'el-popover'
-    },
-    HELPERS: {
-        // 是否mini显示 description
-        isMiniDes(formProps) {
-            return formProps && ['left', 'right'].includes(formProps.labselPosition);
-        }
-    }
+         // popover, used to display the description when the mouse is moved into the left and right layout of formLable
+         popover: 'el-popover'
+     },
+     HELPERS: {
+         // Whether mini displays description
+         isMiniDes(formProps) {
+             return formProps && ['left', 'right'].includes(formProps.labselPosition);
+         }
+     }
 };
 
 const mySchemaForm = createVue2Core(globalOptions);
 
 ```
 
-适配一个新的ui框架只需要适配如上的组件即可
+To adapt to a new UI framework, you only need to adapt the above components.
 
 ## License
 Apache-2.0
