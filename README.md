@@ -52,11 +52,3 @@ yarn run demo:dev --dir=vue-editor
 When doing front-end visual editing, in order to solve the versatility of the data configuration form, `JSON Schema` is used to describe the data structure and dynamically generate the form.
 
 The advantage of this is that in addition to solving the duplication of work in each configuration form, the server can also maintain the same verification rules as the front-end based on the same schema. However, for the use of vue elementUi, no suitable library has been found that can be used directly, so in the following paragraph It's time to decide to implement one yourself.
-
-## Questions or suggestions
-* [Standard JSON Schema does not support partial and update plans](https://vue-json-schema-form.lljj.me/zh/guide/todo.html)
-
-If you have any usage questions or suggestions, you can submit them to me through [Github issue](https://github.com/lljj-x/vue-json-schema-form/issues)
-​
-## License
-Apache-2.0
