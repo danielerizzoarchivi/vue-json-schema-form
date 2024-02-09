@@ -2,7 +2,7 @@
 
 Based on Vue2 / Vue3, [JSON Schema](https://json-schema.org/understanding-json-schema/index.html) generate a Form with complete verification, your :star2: :star2: :star2: It’s the greatest support
 
-[View Document](https://vue-json-schema-form.lljj.me) - [Playground](https://form.lljj.me) - [Visual Form Schema Generator](https://form .lljj.me/schema-generator.html)
+[View Document](https://vue-json-schema-form.lljj.me) - [Playground](https://form.lljj.me) - [Visual Form Schema Generator](https://form.lljj.me/schema-generator.html)
 
 ## ui framework support
 * [vue2 ElementUi](https://github.com/lljj-x/vue-json-schema-form/tree/master/packages/lib/vue2/vue2-form-element)
