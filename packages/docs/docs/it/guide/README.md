@@ -1,7 +1,5 @@
-#Introduzione
-
-## Preparati
-Prima di iniziare, assicurati di comprendere [Vue](https://cn.vuejs.org/) e [JsonSchema](https://json-schema.org/understanding-json-schema/index.html)
+##Introduzione
+Prima di iniziare, assicurati di comprendere [Vue](https://vuejs.org/) e [JsonSchema](https://json-schema.org/understanding-json-schema/index.html)
 
 ## Esperienza
 * [Demo di Playground](https://form.lljj.me/ "Vue JSON Schema Form Playground")
