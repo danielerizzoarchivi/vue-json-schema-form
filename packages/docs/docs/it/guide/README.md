@@ -1,4 +1,4 @@
-##Introduzione
+## Introduzione
 Prima di iniziare, assicurati di comprendere [Vue](https://vuejs.org/) e [JsonSchema](https://json-schema.org/understanding-json-schema/index.html)
 
 ## Esperienza
